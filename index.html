@@ -7,10 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1:#050005; /* near-black */
-      --bg2:#1b0022; /* deep purple */
-      --neon:#cc66ff; /* purple neon */
-      --accent:#ff80bf; /* romantic pink */
+      --bg1:#050005;
+      --bg2:#1b0022;
+      --neon:#cc66ff;
+      --accent:#ff80bf;
       --glass: rgba(255,255,255,0.03);
     }
     *{box-sizing:border-box}
@@ -42,6 +42,7 @@
       backdrop-filter: blur(6px);
       position:relative;
       overflow:hidden;
+      transition: opacity 1.5s ease;
     }
 
     header{
@@ -84,16 +85,13 @@
       margin-top:18px;text-align:center;color:rgba(255,255,255,0.7);font-size:14px
     }
 
-    /* floating hearts */
     .heart{position:absolute;opacity:0.92;filter:drop-shadow(0 6px 20px rgba(204,102,255,0.12))}
     .heart svg{width:60px;height:60px}
-
     @keyframes floatUp{
       0%{transform:translateY(40vh) scale(.7);opacity:0}
       10%{opacity:1}
       100%{transform:translateY(-30vh) scale(1.05);opacity:0}
     }
-
     .heart.h1{left:6%;bottom:-10%;animation:floatUp 10s linear infinite;animation-delay:0s}
     .heart.h2{left:30%;bottom:-8%;animation:floatUp 12s linear infinite;animation-delay:2s}
     .heart.h3{left:50%;bottom:-12%;animation:floatUp 11s linear infinite;animation-delay:1s}
@@ -107,15 +105,61 @@
 
     footer{margin-top:16px;text-align:center;color:rgba(255,255,255,0.55);font-size:13px}
 
-    /* heartbeat pulse on the heart in header */
     .logo .heart-icon{display:inline-block;animation:beat 1.2s infinite}
     @keyframes beat{0%{transform:scale(1)}30%{transform:scale(1.14)}60%{transform:scale(1)}100%{transform:scale(1)} }
 
-    /* responsive */
     @media (max-width:640px){
       .countdown{gap:8px}
       .unit{min-width:86px;padding:14px}
       .num{font-size:32px}
+    }
+
+    /* Celebration overlay */
+    #celebration {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at center, rgba(204,102,255,0.2), #050005 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 2s ease;
+    }
+    #celebration.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #celebration h2 {
+      font-size: 44px;
+      margin: 0;
+      background: linear-gradient(90deg,var(--neon),var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeUp 2s ease forwards;
+    }
+    #celebration p {
+      margin-top: 12px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      animation: fadeUp 2.4s ease forwards;
+    }
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes glowPulse {
+      0%,100% { text-shadow: 0 0 20px var(--accent); }
+      50% { text-shadow: 0 0 50px var(--neon); }
+    }
+    #celebration h2 span {
+      animation: glowPulse 2s infinite alternate;
     }
   </style>
 </head>
@@ -136,22 +180,10 @@
     </header>
 
     <div class="countdown" id="countdown">
-      <div class="unit">
-        <div class="num" id="days">0</div>
-        <div class="label">Days</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="hours">0</div>
-        <div class="label">Hours</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutes">0</div>
-        <div class="label">Minutes</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="seconds">0</div>
-        <div class="label">Seconds</div>
-      </div>
+      <div class="unit"><div class="num" id="days">0</div><div class="label">Days</div></div>
+      <div class="unit"><div class="num" id="hours">0</div><div class="label">Hours</div></div>
+      <div class="unit"><div class="num" id="minutes">0</div><div class="label">Minutes</div></div>
+      <div class="unit"><div class="num" id="seconds">0</div><div class="label">Seconds</div></div>
     </div>
 
     <div class="subtitle">Close your eyes — breathe in the purple glow. When the numbers reach zero, make a wish. 💜</div>
@@ -162,10 +194,8 @@
     </div>
 
     <footer>Made with a little OBSESSION and a lot of LOVE.</footer>
-
     <div class="tiny-note" id="tzNote" aria-hidden="true">Timezone: local</div>
 
-    <!-- decorative floating hearts -->
     <div class="heart h1" aria-hidden="true"> 
       <svg viewBox="0 0 24 24"><path fill="url(#g)" d="M12 21s-7.5-4.9-10-8.2C-0.5 7 4.1 2 8.9 4.1 11.2 5.2 12 7.2 12 7.2s.8-2 3.1-3.1C19.9 2 24.5 7 22 12.8 19.5 17.1 12 21 12 21z"/></svg>
       <svg width="0" height="0"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#cc66ff" offset="0"/><stop stop-color="#ff80bf" offset="1"/></linearGradient></defs></svg>
@@ -181,14 +211,18 @@
     </div>
   </div>
 
+  <!-- Celebration Screen -->
+  <div id="celebration">
+    <h2><span>💞 Happy that we’re leveling our love 💞</span></h2>
+    <p>Every second was worth it — now our hearts are in sync.</p>
+  </div>
+
   <audio id="chime" preload="auto">
     <source src="data:audio/mpeg;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA..." type="audio/mpeg">
   </audio>
 
   <script>
-    // Target time: Oct 22, 2025 03:30 local time
-    const target = new Date(2025, 9, 22, 3, 30, 0); // month is 0-indexed (9 = October)
-
+    const target = new Date(2025, 9, 22, 3, 30, 0);
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minsEl = document.getElementById('minutes');
@@ -198,7 +232,6 @@
     const playSound = document.getElementById('playSound');
     const chime = document.getElementById('chime');
 
-    // Show timezone (local)
     function updateTzNote(showFull){
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'local time';
       tzNote.textContent = showFull ? `Timezone: ${tz} — target: ${target.toString()}` : `Timezone: ${tz}`;
@@ -217,9 +250,7 @@
       updateTzNote(!expanded);
     });
 
-    // Play gentle chime (user interaction may be required by browser)
     playSound.addEventListener('click', ()=>{
-      // attempt to play; if no source or blocked, we gracefully ignore
       chime.currentTime = 0; chime.play().catch(()=>{});
     });
 
@@ -227,37 +258,36 @@
 
     function tick(){
       const now = new Date();
-      let diff = target - now; // milliseconds
+      let diff = target - now;
       if(diff < 0) diff = 0;
-      const ms = diff % 1000;
-      const totalSec = Math.floor(diff/1000);
+      const totalSec = Math.floor(diff / 1000);
       const sec = totalSec % 60;
-      const totalMin = Math.floor(totalSec/60);
-      const min = totalMin % 60;
-      const totalHour = Math.floor(totalMin/60);
-      const hour = totalHour % 24;
-      const days = Math.floor(totalHour/24);
+      const min = Math.floor(totalSec / 60) % 60;
+      const hour = Math.floor(totalSec / 3600) % 24;
+      const days = Math.floor(totalSec / 86400);
 
       daysEl.textContent = days;
       hoursEl.textContent = pad(hour);
       minsEl.textContent = pad(min);
       secsEl.textContent = pad(sec);
 
-      // subtle glow pulse when seconds change near 0
-      if(diff <= 1000){
-        // final moment - gentle celebration
-        document.querySelectorAll('.unit .num').forEach(n=>n.style.color='var(--accent)');
-        // try to play chime
+      if (diff <= 0) {
+        clearInterval(tickInterval);
         chime.play().catch(()=>{});
-        // tiny confetti of hearts
-        spawnHearts(18);
+        spawnHearts(30);
+
+        setTimeout(()=>{
+          document.querySelector('.card').style.opacity = '0';
+          setTimeout(()=>{
+            document.getElementById('celebration').classList.add('active');
+          }, 1500);
+        }, 600);
       }
     }
 
     let tickInterval = setInterval(tick, 250);
     tick();
 
-    // spawn hearts for quick confetti effect
     function spawnHearts(count){
       for(let i=0;i<count;i++){
         const el = document.createElement('div');
@@ -268,22 +298,13 @@
         el.style.transform = `scale(${0.6 + Math.random()*0.8})`;
         el.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28"><path fill="rgba(255,128,191,0.92)" d="M12 21s-7.5-4.9-10-8.2C-0.5 7 4.1 2 8.9 4.1 11.2 5.2 12 7.2 12 7.2s.8-2 3.1-3.1C19.9 2 24.5 7 22 12.8 19.5 17.1 12 21 12 21z"/></svg>';
         document.body.appendChild(el);
-        const dur = 2200 + Math.random()*1200;
-        el.animate([
-          {transform:`translateY(0px) scale(${1})`, opacity:1},
-          {transform:`translateY(-220px) scale(${1.2})`, opacity:0}
-        ],{duration:dur, easing:'ease-out'});
-        setTimeout(()=>el.remove(), dur+40);
+        const anim = el.animate([
+          {transform:`translateY(0px) scale(1)`, opacity:1},
+          {transform:`translateY(-80vh) scale(1.1)`, opacity:0}
+        ], {duration:3000+Math.random()*2000, easing:'ease-out'});
+        anim.onfinish = ()=>el.remove();
       }
     }
-
-    // small accessibility: prefers-reduced-motion
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion)').matches;
-    if(prefersReduced){
-      document.querySelectorAll('.heart').forEach(h=>h.style.display='none');
-    }
-
-    // If the user wants a downloadable single-file HTML, they can copy this page.
   </script>
 </body>
 </html>
