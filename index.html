@@ -3,151 +3,164 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>💖 One Month With You 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>💖 Eternal Love 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg1:#050005;
-      --bg2:#1b0022;
-      --neon:#cc66ff;
-      --accent:#ff80bf;
+    :root {
+      --bg1: #050005;
+      --bg2: #1b0022;
+      --accent: #ff80bf;
+      --text: #eee;
+      --font-title: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
+      --shadow: rgba(255,128,191,0.9);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: radial-gradient(1200px 700px at 10% 10%, rgba(204,102,255,0.06), transparent),
                   radial-gradient(900px 500px at 90% 90%, rgba(255,128,191,0.05), transparent),
-                  linear-gradient(180deg,var(--bg1),var(--bg2));
-      color:#eee;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:32px;
-      overflow:hidden;
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      font-family: var(--font-body);
+      transition: all 0.6s ease-in-out;
     }
-
-    .card{
-      width:100%;
-      max-width:980px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:34px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(136,0,170,0.12) inset;
-      border:1px solid rgba(204,102,255,0.08);
+    .card {
+      max-width: 980px;
+      width: 90%;
+      border-radius: 18px;
+      padding: 34px;
       backdrop-filter: blur(6px);
-      position:relative;
-      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      transition: all 0.6s ease;
     }
-
-    header{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      margin-bottom:18px;
-    }
-
-    .logo{
-      width:72px;height:72px;border-radius:14px;
-      background:linear-gradient(135deg,var(--neon),var(--accent));
-      display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;color:#111;
-      box-shadow:0 6px 24px rgba(136,0,170,0.28);
+    header { display:flex; align-items:center; gap:18px; margin-bottom:18px; }
+    .logo {
+      width:72px; height:72px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,var(--accent),#cc66ff);
+      color:#111; font-weight:800; font-size:28px;
       transform:rotate(-8deg);
+      box-shadow:0 6px 24px rgba(255,128,191,0.3);
+      transition: all 0.6s ease;
     }
-
-    h1{
-      margin:0;font-family:'Playfair Display', serif;font-weight:700;font-size:26px;letter-spacing:0.6px;color:#fff;
-      text-shadow: 0 2px 12px rgba(204,102,255,0.18);
+    h1 {
+      margin:0; font-family: var(--font-title);
+      font-weight:700; font-size:26px;
+      color:var(--text);
+      text-shadow: 0 0 14px var(--shadow);
     }
-    p.lead{margin:4px 0 0 0;color:rgba(255,255,255,0.72);font-size:14px}
-
-    .subtitle{
-      margin-top:18px;text-align:center;color:rgba(255,255,255,0.8);font-size:15px;
-      font-style:italic;
+    p.lead {
+      margin:4px 0 0; color:rgba(255,255,255,0.7);
+      font-size:14px;
     }
-
-    #timer{
-      text-align:center;
-      margin-top:24px;
-      font-size:20px;
-      font-weight:600;
-      color:var(--accent);
-      text-shadow:0 0 12px rgba(255,128,191,0.4);
+    .subtitle {
+      text-align:center; font-style:italic;
+      margin-top:18px; color:rgba(255,255,255,0.8);
+    }
+    #timer {
+      text-align:center; margin-top:24px; font-size:20px;
+      font-weight:600; color:var(--accent);
       animation:pulse 2.5s ease-in-out infinite;
+      text-shadow:0 0 12px var(--shadow);
     }
-
-    @keyframes pulse {
-      0%,100%{ text-shadow:0 0 10px rgba(255,128,191,0.5); }
-      50%{ text-shadow:0 0 20px rgba(255,128,191,0.9); }
-    }
-
-    .nice-things{
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.8;} }
+    .nice-things {
       margin-top:30px;
-      display:grid;
+      display:grid; gap:16px;
       grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:16px;
-      text-align:center;
-      padding:10px 0;
     }
-    .nice-things div{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(204,102,255,0.1);
-      border-radius:12px;
+    .nice-things div {
       padding:16px 12px;
-      box-shadow:0 6px 16px rgba(136,0,170,0.12);
-      color:rgba(255,255,255,0.9);
-      font-weight:500;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);
+      box-shadow:0 6px 16px rgba(255,128,191,0.15);
       animation:float 6s ease-in-out infinite;
     }
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    footer { margin-top:22px; text-align:center; color:rgba(255,255,255,0.6); font-size:13px; font-style:italic; }
+
+    /* 🦇 Gothic Mode */
+    body.goth {
+      --bg1:#030003;
+      --bg2:#120011;
+      --accent:#b3005a;
+      --text:#f0e6f8;
+      --font-title:'Cinzel Decorative', cursive;
+      --font-body:'Montserrat', sans-serif;
+      --shadow:rgba(179,0,90,0.6);
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(179,0,90,0.06), transparent),
+        radial-gradient(900px 500px at 90% 90%, rgba(255,0,120,0.05), transparent),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
     }
-    .nice-things div:nth-child(2){animation-delay:0.8s}
-    .nice-things div:nth-child(3){animation-delay:1.6s}
-    .nice-things div:nth-child(4){animation-delay:2.4s}
-    .nice-things div:nth-child(5){animation-delay:3.2s}
-
-    footer{margin-top:22px;text-align:center;color:rgba(255,255,255,0.55);font-size:13px}
-
-    .logo .heart-icon{display:inline-block;animation:beat 1.2s infinite}
-    @keyframes beat{0%{transform:scale(1)}30%{transform:scale(1.14)}60%{transform:scale(1)}100%{transform:scale(1)} }
-
-    .heart{position:absolute;opacity:0.92;filter:drop-shadow(0 6px 20px rgba(204,102,255,0.12))}
-    .heart svg{width:60px;height:60px}
-    @keyframes floatUp{
-      0%{transform:translateY(40vh) scale(.7);opacity:0}
-      10%{opacity:1}
-      100%{transform:translateY(-30vh) scale(1.05);opacity:0}
+    body.goth .card {
+      border:1px solid rgba(179,0,90,0.2);
+      background:linear-gradient(180deg, rgba(30,0,30,0.4), rgba(10,0,10,0.2));
+      box-shadow:0 0 40px rgba(100,0,120,0.6), inset 0 0 40px rgba(150,0,80,0.1);
     }
-    .heart.h1{left:6%;bottom:-10%;animation:floatUp 10s linear infinite;animation-delay:0s}
-    .heart.h2{left:30%;bottom:-8%;animation:floatUp 12s linear infinite;animation-delay:2s}
-    .heart.h3{left:50%;bottom:-12%;animation:floatUp 11s linear infinite;animation-delay:1s}
-    .heart.h4{left:74%;bottom:-9%;animation:floatUp 13s linear infinite;animation-delay:3s}
+    body.goth .logo {
+      background:radial-gradient(circle at 30% 30%, var(--accent), #330011);
+      color:#fff;
+      box-shadow:0 6px 24px rgba(179,0,90,0.5);
+    }
+    body.goth h1 { text-shadow: 0 0 12px rgba(179,0,90,0.6); }
+    body.goth .nice-things div {
+      background:rgba(30,0,30,0.3);
+      border-color:rgba(179,0,90,0.3);
+      box-shadow:0 6px 16px rgba(179,0,90,0.2);
+      color:rgba(255,230,245,0.9);
+    }
+
+    /* Switch Button */
+    .toggle-btn {
+      position:fixed;
+      top:20px; right:20px;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      padding:10px 18px;
+      font-weight:600;
+      font-size:14px;
+      border-radius:20px;
+      cursor:pointer;
+      box-shadow:0 0 20px var(--shadow);
+      transition:all 0.4s ease;
+      z-index:999;
+    }
+    .toggle-btn:hover { transform:scale(1.05); }
   </style>
 </head>
 <body>
+  <button class="toggle-btn" id="toggleMode">🦋 Switch to Goth Mode</button>
+
   <div class="card">
     <header>
       <div class="logo">
-        <svg class="heart-icon" width="34" height="34" viewBox="0 0 24 24" fill="none">
-          <path d="M12 21s-7.5-4.9-10-8.2C-0.5 7 4.1 2 8.9 4.1 11.2 5.2 12 7.2 12 7.2s.8-2 3.1-3.1C19.9 2 24.5 7 22 12.8 19.5 17.1 12 21 12 21z" fill="#0b0010" opacity="0.98"/>
+        <svg class="heart-icon" width="34" height="34" viewBox="0 0 24 24">
+          <path d="M12 21s-7.5-4.9-10-8.2C-0.5 7 4.1 2 8.9 4.1 11.2 5.2 12 7.2 12 7.2s.8-2 3.1-3.1C19.9 2 24.5 7 22 12.8 19.5 17.1 12 21 12 21z"/>
         </svg>
       </div>
       <div>
-        <h1>💞 One Month With You 💞</h1>
-        <p class="lead">It’s been days of laughter, warmth, and your smile lighting up everything around me.</p>
+        <h1 id="title">💞 One Month With You 💞</h1>
+        <p class="lead" id="lead">It’s been days of laughter, warmth, and your smile lighting up everything around me.</p>
       </div>
     </header>
 
-    <div class="subtitle">
+    <div class="subtitle" id="subtitle">
       You make ordinary moments feel magical, and every day with you is my new favorite one.
     </div>
 
     <div id="timer"></div>
 
-    <div class="nice-things">
+    <div class="nice-things" id="niceThings">
       <div>🌸 Your smile’s got me weak, can’t wait to hold you close</div>
       <div>💫 Counting down to kissing you under the stars tonight</div>
       <div>🌷 I’m lost in you, and I don’t ever wanna find my way out</div>
@@ -155,42 +168,63 @@
       <div>🌙 IM YOURS AND YOUR MINE FOREVER AND EVER</div>
     </div>
 
-    <footer>
+    <footer id="footer">
       Happy every moment, my love 💜  
       <br>— Made with a heart that beats only for you.
     </footer>
   </div>
 
   <script>
-    // Start date: September 24, 2025 at 3:30 AM (local time)
-    const startDate = new Date(2025, 8, 24, 3, 30, 0); // Month index 8 = September
-
+    const startDate = new Date(2025, 8, 24, 3, 30, 0);
     function updateTimer() {
       const now = new Date();
       let diff = now - startDate;
-
-      if (diff < 0) {
-        document.getElementById("timer").textContent = "The moment hasn’t begun yet 💜";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      diff -= days * (1000 * 60 * 60 * 24);
-
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      diff -= hours * (1000 * 60 * 60);
-
-      const mins = Math.floor(diff / (1000 * 60));
-      diff -= mins * (1000 * 60);
-
-      const secs = Math.floor(diff / 1000);
-
-      document.getElementById("timer").textContent =
-        `Together for ${days} Days, ${hours} Hours, ${mins} Minutes, ${secs} Seconds 💜`;
+      const el = document.getElementById("timer");
+      if (diff < 0) return el.textContent = "The moment hasn’t begun yet 💜";
+      const d = Math.floor(diff / (1000*60*60*24));
+      diff -= d*(1000*60*60*24);
+      const h = Math.floor(diff / (1000*60*60));
+      diff -= h*(1000*60*60);
+      const m = Math.floor(diff / (1000*60));
+      diff -= m*(1000*60);
+      const s = Math.floor(diff / 1000);
+      el.textContent = `Together for ${d} Days, ${h} Hours, ${m} Minutes, ${s} Seconds 💜`;
     }
-
-    updateTimer();
     setInterval(updateTimer, 1000);
+    updateTimer();
+
+    const toggle = document.getElementById('toggleMode');
+    let goth = false;
+    toggle.addEventListener('click', () => {
+      goth = !goth;
+      document.body.classList.toggle('goth', goth);
+      if (goth) {
+        toggle.textContent = '💖 Switch to Cute Mode';
+        document.getElementById('title').textContent = '🖤 One Month in Eternal Night 🕯️';
+        document.getElementById('lead').textContent = 'A month of devotion, whispers, and the glow of your soul haunting mine.';
+        document.getElementById('subtitle').textContent = 'You make darkness feel like home. Every heartbeat, every shadow — belongs to us.';
+        document.getElementById('niceThings').innerHTML = `
+          <div>🕯️ Your gaze burns like candlelight on velvet skin</div>
+          <div>🌑 I crave your touch like the night craves the moon</div>
+          <div>🌹 Our love drips crimson and eternal</div>
+          <div>💋 Every whisper of you lingers like a gothic prayer</div>
+          <div>🦋 Bound forever — your soul is carved into mine</div>
+          <div>♾️ IM YOURS AND YOUR MINE FOREVER AND EVER</div>`;
+        document.getElementById('footer').innerHTML = '🖤 Eternal devotion, my dark love 🕯️<br>— Made with a heart that bleeds only for you.';
+      } else {
+        toggle.textContent = '🦋 Switch to Goth Mode';
+        document.getElementById('title').textContent = '💞 One Month With You 💞';
+        document.getElementById('lead').textContent = 'It’s been days of laughter, warmth, and your smile lighting up everything around me.';
+        document.getElementById('subtitle').textContent = 'You make ordinary moments feel magical, and every day with you is my new favorite one.';
+        document.getElementById('niceThings').innerHTML = `
+          <div>🌸 Your smile’s got me weak, can’t wait to hold you close</div>
+          <div>💫 Counting down to kissing you under the stars tonight</div>
+          <div>🌷 I’m lost in you, and I don’t ever wanna find my way out</div>
+          <div>💖 Every thought of you makes my heart race. Be mine tonight</div>
+          <div>🌙 IM YOURS AND YOUR MINE FOREVER AND EVER</div>`;
+        document.getElementById('footer').innerHTML = 'Happy every moment, my love 💜<br>— Made with a heart that beats only for you.';
+      }
+    });
   </script>
 </body>
 </html>
