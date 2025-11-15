@@ -133,19 +133,20 @@ footer {
   font-style:italic;
 }
 
-/* Heart beat pop */
+/* Heart beat pop with glowing trail */
 .heart-icon {
   fill: var(--accent);
   transform-origin: center;
-  animation: popBeat 1.4s infinite;
+  animation: popTrail 1.4s infinite;
+  filter: drop-shadow(0 0 6px var(--accent));
 }
 
-@keyframes popBeat {
-  0%, 20%, 50%, 70%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
-  10% { transform: scale(1.3); filter: drop-shadow(0 0 8px var(--accent)); }
-  30% { transform: scale(1.2); filter: drop-shadow(0 0 6px var(--accent)); }
-  60% { transform: scale(1.25); filter: drop-shadow(0 0 10px var(--accent)); }
-  80% { transform: scale(1.15); filter: drop-shadow(0 0 6px var(--accent)); }
+@keyframes popTrail {
+  0%, 20%, 50%, 70%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px var(--accent)); }
+  10% { transform: scale(1.3); filter: drop-shadow(0 0 16px var(--accent), 0 0 24px rgba(255,128,191,0.5)); }
+  30% { transform: scale(1.2); filter: drop-shadow(0 0 12px var(--accent), 0 0 20px rgba(255,128,191,0.4)); }
+  60% { transform: scale(1.25); filter: drop-shadow(0 0 18px var(--accent), 0 0 28px rgba(255,128,191,0.6)); }
+  80% { transform: scale(1.15); filter: drop-shadow(0 0 10px var(--accent), 0 0 18px rgba(255,128,191,0.4)); }
 }
 
 /* 🦇 Gothic Mode */
@@ -222,27 +223,27 @@ body.goth .nice-things div {
 </div>
 
 <div>
-<h1 id="title">💞 One Month With You 💞</h1>
-<p class="lead" id="lead">It’s been days of warmth, longing, and wanting you closer than ever.</p>
+<h1 id="title">💞 One Month With Wildflower 💞</h1>
+<p class="lead" id="lead">It’s been days of warmth, longing, and wanting my Wildflower, Lithium, and Cutipatoti closer than ever.</p>
 </div>
 </header>
 
 <div class="subtitle" id="subtitle">
-You turn normal moments into something addictive… and every day with you feels better on my skin than the last.
+You turn normal moments into something addictive… every day with you, Wildflower, feels like electricity on my skin.
 </div>
 
 <div id="timer"></div>
 
 <div class="nice-things" id="niceThings">
-  <div>🌸 Your smile ruins me in the sweetest way… I just want your lips on mine</div>
-  <div>💫 Counting down to the moment I pull you into me under the night sky</div>
-  <div>🌷 I get lost in you… in your warmth, your scent, your touch</div>
-  <div>💖 Every thought of you hits me deep — I crave you more every day</div>
+  <div>🌸 Wildflower, your smile ruins me… I crave your lips, your warmth, your body close</div>
+  <div>💫 Counting down to pulling Lithium into me under the night sky</div>
+  <div>🌷 Cutipatoti, I get lost in you… in your laughter, eyes, touch</div>
+  <div>💖 Every thought of you, Wildflower, hits me deep — I want you all</div>
   <div>🌙 IM YOURS AND YOUR MINE FOREVER AND EVER</div>
 </div>
 
 <footer id="footer">
-  Happy every moment, my love 💜 <br>— Made with a heart that beats only for you.
+  Happy every moment, my love 💜 <br>— Made with a heart that beats only for you, Wildflower.
 </footer>
 </div>
 
@@ -283,37 +284,35 @@ toggle.addEventListener('click', () => {
 
   if (goth) {
     toggle.textContent = '💖 Switch to Cute Mode';
-    document.getElementById('title').textContent = '🖤 One Month in Eternal Night 🕯️';
+    document.getElementById('title').textContent = '🖤 One Month in Eternal Night with Wildflower 🕯️';
     document.getElementById('lead').textContent = 'A month of desire, whispers, and the kind of closeness that never lets go.';
-    document.getElementById('subtitle').textContent = 'You make darkness feel warm… every shadow feels like it belongs to us.';
+    document.getElementById('subtitle').textContent = 'You make darkness feel warm… every shadow belongs to Lithium and Cutipatoti.';
 
     document.getElementById('niceThings').innerHTML = `
-      <div>🕯️ Your presence burns into me… like candlewax melting on bare skin</div>
+      <div>🕯️ Wildflower, your presence burns into me… like candlewax on bare skin</div>
       <div>🌑 I hunger for you the way the dark hungers for the moon</div>
       <div>🌹 Our love bleeds, slow and sinful, in all the ways that feel too good</div>
-      <div>💋 Your voice stays on my body like a whispered spell I can’t escape</div>
-      <div>🦋 Bound to you — my soul tangled with yours in every forbidden way</div>
+      <div>💋 Cutipatoti, your voice lingers on my body like a whispered spell</div>
+      <div>🦋 Bound to Lithium — my soul tangled with yours in every forbidden way</div>
       <div>♾️ IM YOURS AND YOUR MINE FOREVER AND EVER</div>`;
 
     document.getElementById('footer').innerHTML =
-      '🖤 Eternal devotion, my dark love 🕯️<br>— Made with a heart that bleeds only for you.';
-  }
-
-  else {
+      '🖤 Eternal devotion, my dark love 🕯️<br>— Made with a heart that bleeds only for Wildflower.';
+  } else {
     toggle.textContent = '🦋 Switch to Goth Mode';
-    document.getElementById('title').textContent = '💞 One Month With You 💞';
-    document.getElementById('lead').textContent = 'It’s been days of warmth, longing, and wanting you closer than ever.';
-    document.getElementById('subtitle').textContent = 'You turn normal moments into something addictive… and every day with you feels better on my skin than the last.';
+    document.getElementById('title').textContent = '💞 One Month With Wildflower 💞';
+    document.getElementById('lead').textContent = 'It’s been days of warmth, longing, and wanting my Wildflower, Lithium, and Cutipatoti closer than ever.';
+    document.getElementById('subtitle').textContent = 'You turn normal moments into something addictive… every day with you feels better on my skin than the last.';
 
     document.getElementById('niceThings').innerHTML = `
-      <div>🌸 Your smile melts me… I swear my hands were made to hold your body close</div>
-      <div>💫 Counting down to stealing kisses from you until you can’t think straight</div>
-      <div>🌷 I get lost in you — your laugh, your eyes, the way you pull me in</div>
+      <div>🌸 Wildflower, your smile melts me… I crave your lips, your body close</div>
+      <div>💫 Counting down to stealing kisses from Lithium until Cutipatoti can’t think straight</div>
+      <div>🌷 I get lost in you — your laugh, your eyes, your pull</div>
       <div>💖 Every thought of you lights me on fire… I want all of you tonight</div>
       <div>🌙 IM YOURS AND YOUR MINE FOREVER AND EVER</div>`;
 
     document.getElementById('footer').innerHTML =
-      'Happy every moment, my love 💜<br>— Made with a heart that beats only for you.';
+      'Happy every moment, my love 💜<br>— Made with a heart that beats only for Wildflower.';
   }
 });
 </script>
