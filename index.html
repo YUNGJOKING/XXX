@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
+/* ============================================================
+   ROOT + DEFAULT CUTE MODE
+============================================================ */
 :root {
   --bg1: #050005;
   --bg2: #1b0022;
@@ -20,27 +23,112 @@
 body {
   margin: 0;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(1200px 700px at 10% 10%, rgba(204,102,255,0.06), transparent),
-              radial-gradient(900px 500px at 90% 90%, rgba(255,128,191,0.05), transparent),
-              linear-gradient(180deg, var(--bg1), var(--bg2));
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
   color: var(--text);
   font-family: var(--font-body);
-  transition: all 0.6s ease-in-out;
+  transition: all 1s ease;
 }
 
+/* FLOATING BACKGROUND HEARTS */
+.hearts {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 0.3;}
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* FLOATING GOTH BATS */
+.bats {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  display: none;
+  z-index: 0;
+}
+
+.bat {
+  position: absolute;
+  animation: batFly 12s linear infinite;
+  opacity: 0.8;
+  font-size: 24px;
+}
+
+@keyframes batFly {
+  0% { transform: translateX(-10vw) translateY(0); }
+  100% { transform: translateX(110vw) translateY(-20vh); }
+}
+
+/* LIGHTNING FLASH IN GOTH MODE */
+.lightning {
+  display: none;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 9999;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  10% { opacity: 0.8; }
+  20% { opacity: 0; }
+}
+
+/* ROSE PETALS */
+.petals {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  font-size: 20px;
+  animation: fall 10s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* ============================================================
+   CARD + CONTENT
+============================================================ */
 .card {
   max-width: 980px;
   width: 90%;
   border-radius: 18px;
   padding: 34px;
+  position: relative;
+  z-index: 2;
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  transition: all 0.6s ease;
+  background: rgba(255,255,255,0.03);
+  transition: all 1s ease;
 }
 
 header {
@@ -63,7 +151,21 @@ header {
   font-size:28px;
   transform:rotate(-8deg);
   box-shadow:0 6px 24px rgba(255,128,191,0.3);
-  transition: all 0.6s ease;
+  transition: all 1s ease;
+}
+
+/* HEARTBEAT FOR LOGO HEART */
+.heart-icon {
+  animation: heartbeat 1.2s cubic-bezier(.4,0,.6,1) infinite;
+  transform-origin: center;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
 }
 
 h1 {
@@ -81,13 +183,7 @@ p.lead {
   font-size:14px;
 }
 
-.subtitle {
-  text-align:center;
-  font-style:italic;
-  margin-top:18px;
-  color:rgba(255,255,255,0.8);
-}
-
+/* Timer glow */
 #timer {
   text-align:center;
   margin-top:24px;
@@ -133,34 +229,17 @@ footer {
   font-style:italic;
 }
 
-/* Heart beat pop with glowing trail */
-.heart-icon {
-  fill: var(--accent);
-  transform-origin: center;
-  animation: popTrail 1.4s infinite;
-  filter: drop-shadow(0 0 6px var(--accent));
-}
-
-@keyframes popTrail {
-  0%, 20%, 50%, 70%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px var(--accent)); }
-  10% { transform: scale(1.3); filter: drop-shadow(0 0 16px var(--accent), 0 0 24px rgba(255,128,191,0.5)); }
-  30% { transform: scale(1.2); filter: drop-shadow(0 0 12px var(--accent), 0 0 20px rgba(255,128,191,0.4)); }
-  60% { transform: scale(1.25); filter: drop-shadow(0 0 18px var(--accent), 0 0 28px rgba(255,128,191,0.6)); }
-  80% { transform: scale(1.15); filter: drop-shadow(0 0 10px var(--accent), 0 0 18px rgba(255,128,191,0.4)); }
-}
-
-/* 🦇 Gothic Mode */
+/* ============================================================
+   GOTH MODE
+============================================================ */
 body.goth {
   --bg1:#030003;
   --bg2:#120011;
   --accent:#b3005a;
   --text:#f0e6f8;
   --font-title:'Cinzel Decorative', cursive;
-  --font-body:'Montserrat', sans-serif;
   --shadow:rgba(179,0,90,0.6);
-  background: radial-gradient(1200px 700px at 10% 10%, rgba(179,0,90,0.06), transparent),
-              radial-gradient(900px 500px at 90% 90%, rgba(255,0,120,0.05), transparent),
-              linear-gradient(180deg,var(--bg1),var(--bg2));
+  background: linear-gradient(180deg,var(--bg1),var(--bg2));
 }
 
 body.goth .card {
@@ -175,22 +254,13 @@ body.goth .logo {
   box-shadow:0 6px 24px rgba(179,0,90,0.5);
 }
 
-body.goth h1 {
-  text-shadow: 0 0 12px rgba(179,0,90,0.6);
-}
-
-body.goth .nice-things div {
-  background:rgba(30,0,30,0.3);
-  border-color:rgba(179,0,90,0.3);
-  box-shadow:0 6px 16px rgba(179,0,90,0.2);
-  color:rgba(255,230,245,0.9);
-}
-
-/* Switch Button */
+/* ============================================================
+   SWITCH BUTTON
+============================================================ */
 .toggle-btn {
-  position:fixed;
-  top:20px;
-  right:20px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   background:var(--accent);
   color:#fff;
   border:none;
@@ -212,8 +282,16 @@ body.goth .nice-things div {
 
 <body>
 
+<!-- MODE BUTTON -->
 <button class="toggle-btn" id="toggleMode">🦋 Switch to Goth Mode</button>
 
+<!-- BACKGROUND EFFECTS -->
+<div class="hearts" id="hearts"></div>
+<div class="bats" id="bats"></div>
+<div class="petals" id="petals"></div>
+<div class="lightning" id="lightning"></div>
+
+<!-- MAIN CARD -->
 <div class="card">
 <header>
 <div class="logo">
@@ -235,10 +313,10 @@ You turn normal moments into something addictive… every day with you, Wildflow
 <div id="timer"></div>
 
 <div class="nice-things" id="niceThings">
-  <div>🌸 Wildflower, your smile ruins me… I crave your lips, your warmth, your body close</div>
-  <div>💫 Counting down to pulling Lithium into me under the night sky</div>
-  <div>🌷 Cutipatoti, I get lost in you… in your laughter, eyes, touch</div>
-  <div>💖 Every thought of you, Wildflower, hits me deep — I want you all</div>
+  <div>🌸 Wildflower, your smile melts me… I crave your lips, your body close</div>
+  <div>💫 Counting down to stealing kisses from Lithium until Cutipatoti can’t think straight</div>
+  <div>🌷 I get lost in you — your laugh, your eyes, your pull</div>
+  <div>💖 Every thought of you lights me on fire… I want all of you tonight</div>
   <div>🌙 IM YOURS AND YOUR MINE FOREVER AND EVER</div>
 </div>
 
@@ -247,9 +325,12 @@ You turn normal moments into something addictive… every day with you, Wildflow
 </footer>
 </div>
 
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
 <script>
+/* TIMER */
 const startDate = new Date(2025, 8, 24, 3, 30, 0);
-
 function updateTimer() {
   const now = new Date();
   let diff = now - startDate;
@@ -275,6 +356,61 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
+/* BACKGROUND HEARTS FOR CUTE MODE */
+const hearts = document.getElementById("hearts");
+function spawnHearts() {
+  if (document.body.classList.contains("goth")) return;
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+  hearts.appendChild(heart);
+  setTimeout(()=>heart.remove(), 9000);
+}
+setInterval(spawnHearts, 500);
+
+/* GOTH BATS */
+const bats = document.getElementById("bats");
+function spawnBats() {
+  if (!document.body.classList.contains("goth")) return;
+  const bat = document.createElement("div");
+  bat.className = "bat";
+  bat.textContent = "🦇";
+  bat.style.top = Math.random() * 80 + "vh";
+  bat.style.animationDuration = 8 + Math.random()*5 + "s";
+  bats.appendChild(bat);
+  setTimeout(()=>bat.remove(), 14000);
+}
+setInterval(spawnBats, 1500);
+
+/* ROSE PETALS */
+const petals = document.getElementById("petals");
+function spawnPetals() {
+  const pet = document.createElement("div");
+  pet.className = "petal";
+  pet.textContent = "🌹";
+  pet.style.left = Math.random() * 100 + "vw";
+  pet.style.animationDuration = 6 + Math.random()*4 + "s";
+  petals.appendChild(pet);
+  setTimeout(()=>pet.remove(), 10000);
+}
+setInterval(spawnPetals, 1200);
+
+/* LIGHTNING FLASH */
+const lightning = document.getElementById("lightning");
+function flashLightning() {
+  if (!document.body.classList.contains("goth")) return;
+  lightning.style.display = "block";
+  lightning.style.animation = "flash 0.6s";
+  setTimeout(()=> {
+    lightning.style.animation = "";
+    lightning.style.display = "none";
+  }, 600);
+}
+setInterval(flashLightning, 7000);
+
+/* MODE TOGGLE */
 const toggle = document.getElementById('toggleMode');
 let goth = false;
 
@@ -298,11 +434,14 @@ toggle.addEventListener('click', () => {
 
     document.getElementById('footer').innerHTML =
       '🖤 Eternal devotion, my dark love 🕯️<br>— Made with a heart that bleeds only for Wildflower.';
+
   } else {
     toggle.textContent = '🦋 Switch to Goth Mode';
     document.getElementById('title').textContent = '💞 One Month With Wildflower 💞';
-    document.getElementById('lead').textContent = 'It’s been days of warmth, longing, and wanting my Wildflower, Lithium, and Cutipatoti closer than ever.';
-    document.getElementById('subtitle').textContent = 'You turn normal moments into something addictive… every day with you feels better on my skin than the last.';
+    document.getElementById('lead').textContent = 
+      'It’s been days of warmth, longing, and wanting my Wildflower, Lithium, and Cutipatoti closer than ever.';
+    document.getElementById('subtitle').textContent = 
+      'You turn normal moments into something addictive… every day with you, Wildflower, feels like electricity on my skin.';
 
     document.getElementById('niceThings').innerHTML = `
       <div>🌸 Wildflower, your smile melts me… I crave your lips, your body close</div>
